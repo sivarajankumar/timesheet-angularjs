@@ -1,0 +1,25 @@
+ <div ng-init="init()">
+
+	<div id="periode">
+		Période: {{monthLabel}} {{year}}
+	</div>
+	
+ 	<table id="table">
+ 		<tr>
+ 			<td />
+ 			<td ng-repeat="day in days" class="day day{{day.type}}" >{{day.day}}</td>
+ 		</tr>
+ 		<tr>
+ 			<td class="tdTitle">Développement & Architecture Java JEE</td>
+ 			<td ng-repeat="day in days" class="day day{{day.type}}" ng-click="changeType(day)">{{day.rate}}</td>
+ 		</tr>
+ 	</table>
+	
+	<div>
+		<table border="0" class="resume">
+			<tr><td>Nombre d'unités d'oeuvres réceptionnées (JH)</td><td>{{getTotal()}}</td></tr>							
+			<tr><td>Nombre de jours de congés</td><td>{{getTotalOff()}}</td></tr>
+		</table>							
+	</div>
+
+ </div>
