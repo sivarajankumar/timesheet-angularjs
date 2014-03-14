@@ -1,0 +1,86 @@
+table {
+  margin: 0px auto;
+  border: none;
+  width: 90%;
+}
+
+.table {
+	margin-top: 1em;
+}
+
+td {	
+	margin: 0em;
+	padding: 0em;
+	text-align: left;
+}
+
+.day {
+  width: 10em;
+  height: 1em;
+  border: dashed 0.1ex;
+  text-align: center;
+}
+
+.daywe {
+	background-color: 888888;
+}
+.daynone {
+	background-color: white;
+}
+.dayhalf {
+	background-color: white;
+}
+.dayfull {
+	background-color: white;
+}
+
+.tdTitle {
+	width: 500px;
+	text-align: left;
+	border: dashed 0.1ex;
+	padding: 1ex;
+}
+
+.tdTotal {
+	text-align: right;
+}
+
+#fournisseur {
+	float: left;
+	text-align: left;
+}
+
+#client {
+	float: right;
+	text-align: left;
+}
+
+.resume {
+	margin-top: 1em;
+	border: none;
+	width: 30%;
+	float: left;
+}
+.resume td {
+	text-align: left;
+	border: none;
+}
+
+#visaFournisseur {
+	margin-top: 1em;
+	float: left;
+	width: 25%;	
+}
+#visaClient {
+	float: right;
+	width: 25%;
+	margin-top: 1em;
+}
+
+#codes {
+	float: none;
+	margin-top: 2em;
+	border: dashed;
+	width: 40%;
+	height: 10%;
+}
