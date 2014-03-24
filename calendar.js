@@ -28,3 +28,18 @@ function getCalendar(year, month) {
 	
 	return days;
 }
+
+var months = [
+	{"label": "Janvier", "index": 0},
+    {"label": "F\u00E9vrier", "index": 1},
+    {"label": "Mars", "index": 2},
+    {"label": "Avril", "index": 3},
+    {"label": "Mai", "index": 4},
+    {"label": "Juin", "index": 5},
+    {"label": "Juillet", "index": 6},
+    {"label": "Aout", "index": 7},
+    {"label": "Septembre", "index": 8},
+    {"label": "Octobre", "index": 9},
+    {"label": "Novembre", "index": 10},
+    {"label": "Décembre", "index": 11}
+];

@@ -1,37 +1,47 @@
 function TimeSheet($scope, $firebase) {
 
+	// firebase data
 	var ref = new Firebase("https://tsangularjs.firebaseio.com/ts");
 	// get all data
 	$scope.ts = $firebase(ref);
-	//$scope.ts.$bind($scope, "ts");
+	$scope.ts.$bind($scope, "ts");
 	
-	$scope.update = true;
-	// get keys
+	// get data (asynchronous)
 	$scope.ts.$on('loaded', function() {
-		$scope.keys = $scope.ts.$getIndex();
+		// $scope.keys = $scope.ts.$getIndex(); // how to get indexes
 		// update from firebase
 		var data = $scope.getFireBaseData($scope.year, $scope.month);
 		if (data == null) {
-			$scope.days = getCalendar($scope.year, $scope.month.index);
-			$scope.update = false;
-		} else {
-			$scope.days = data.days;
-			$scope.update = true;
+			// no corresponding data => generate new one
+			var dataDays = getCalendar($scope.year, $scope.month.index);
+			data = {
+				"year"  : $scope.year,
+				"month" : $scope.month,
+				"days"  : dataDays
+			};
+			
+			$scope.current = $scope.ts.$add(data);
 		}
+		// data is in $scope.count
+		$scope.days = $scope.ts[$scope.current].days;
 	});
 
+	/**
+	 * TODO
+	 */
 	$scope.initializeDays = function() {
 		
 	};
 	
-	$scope.months = [
-	                 {"label": "Janvier", "index": 0},
-	                 {"label": "F\u00E9vrier", "index": 1},
-	                 {"label": "Mars", "index": 2}
-	                 ];
+	// TODO move to calendar.js
+	$scope.months = months;
+	
+	// TODO move to calendar.js
 	$scope.years = [2013, 2014, 2015, 2016];
 
-	// initialize month and year
+	/**
+	 * Initialize month and year to today.
+	 */
 	$scope.init = function() {
 		
 		var d = new Date();
@@ -40,23 +50,33 @@ function TimeSheet($scope, $firebase) {
 
 		$scope.month = $scope.months[$scope.monthIndex];
 		$scope.year = $scope.years[$scope.yearIndex];
-		
-		/**
-		var data = $scope.getFireBaseData($scope.messages, $scope.year, $scope.month);
-		if (data == null) {
-			$scope.log = "new";
-			$scope.days = getCalendar($scope.year, $scope.month.index);
-		} else {
-			$scope.log = "firebase";
-			$scope.days = data.days;
-		}
-		*/
 	};
 	
-	// Initialize month days
+	/**
+	 * Initialize controls change functions.
+	 */
 	$scope.change = function() {
+		var data = $scope.getFireBaseData($scope.year, $scope.month);
+		if (data == null) {
+			// no corresponding data => generate new one
+			var dataDays = getCalendar($scope.year, $scope.month.index);
+			data = {
+				"year"  : $scope.year,
+				"month" : $scope.month,
+				"days"  : dataDays
+			};
+			
+			$scope.ts.$add(data);
+			$scope.days = data.days;
+			
+		}
+		// data is in $scope.count
+		$scope.days = data.days;
 	};
 
+	/**
+	 * return total days rate: day.rate aggregator.
+	 */
 	$scope.getTotal = function() {
 		var total = 0;
 		angular.forEach($scope.days, function(day) {
@@ -65,6 +85,9 @@ function TimeSheet($scope, $firebase) {
 		return total;
 	};
 	
+	/**
+	 * return total rate of non-working days -from day.rate)
+	 */
 	$scope.getTotalOff = function() {
 		var total = 0;
 		angular.forEach($scope.days, function(day) {
@@ -72,11 +95,18 @@ function TimeSheet($scope, $firebase) {
 				total += 0.5;
 			} else if (day.type == "none") {
 				total += 1.0;
+			} else if (day.type == "full") {
+				// 0
 			}
 		});
 		return total;
 	};
-	
+
+	/**
+	 * Lifecycle to change the rate of a day.
+	 * we -> |
+	 * full -> none -> half -> full
+	 */
 	$scope.changeType = function(day) {
 		if (day.type == "we") {
 			return;
@@ -91,62 +121,29 @@ function TimeSheet($scope, $firebase) {
 		day.rate = getRate(day.type);
 	};
 
+	
+	/**
+	 * return the data corresponding to the input year and month
+	 */
 	$scope.getFireBaseData = function(year, month) {
-		var ret;
-		angular.forEach($scope.ts, function(msg) {
+		var ret = null;
+		var count = 0;
+		angular.forEach($scope.ts, function(msg, key) {
 			if (msg != null && msg.year == year && msg.month.index == month.index) {
+				$scope.current = key;
 				ret = msg;
 				keepGoing = false;
 			}
+			count++;
 		});
 		return ret;
 	};
 	
+	/**
+	 * On control save click.
+	 */
 	$scope.save = function() {
-		var data = {
-			"year": $scope.year,
-			"month": $scope.month,
-			"days": $scope.days
-		};
-		if ($scope.update) {
-			$scope.ts.$update(data);
-		} else {
-			$scope.ts.$add(data);
-		}
-//		
-//		var fdata = $scope.getFireBaseData($scope.year, $scope.month);
-//		if (fdata == null) {
-//			var data = {
-//					"year": $scope.year,
-//					"month": $scope.month,
-//					"days": $scope.days
-//			};
-//			$scope.x = $scope.messages.$add(data);
-//		} else {
-//			$scope.x = $scope.messages.$save($scope.days);
-//		}
-		
-//		var newData = true;
-//		angular.forEach($scope.messages, function(msg) {
-//			if (msg.year == $scope.year && msg.month.index == $scope.month.index) {
-//				// update
-//				//$scope.messages.$update(data);
-//				newData = false;
-//				keepGoing = false;
-//			}
-//		});
-//		if (newData) {
-//			// add new
-//		}
-		
-//		var ts = new Firebase($scope.fbUrl);
-//		$scope.ts = $firebase(ts);
-//		
-//		$scope.ts.$update(data);
-//		//ts.set({date: $scope.year, days: $scope.days});
-		//var year = ts.child($scope.year);
-		//var month = year.child($scope.month);
-		//month.set(data);
+		$scope.ts.$set($scope.ts);
 	};
 
 };

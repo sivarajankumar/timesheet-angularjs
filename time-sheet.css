@@ -74,3 +74,7 @@ td {
     font-size: 15px;
     padding-top: 0ex;
 }
+
+#btnSave {
+	float: right;
+}

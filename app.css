@@ -15,7 +15,7 @@ body, html {
 	margin-top : 7em;
 	maring: 0 auto;
     padding: 5px;
-    border: dashed;
+    border: none;
 }
 
 .footer {
@@ -47,24 +47,24 @@ body, html {
 #fournisseur {
 	float: left;
 	text-align: left;
-	border: dashed;
+	border: none;
 }
 
 #client {
 	float: right;
 	text-align: left;
-	border: dashed;
+	border: none;
 }
 
 #visaFournisseur {
 	margin-top: 1em;
 	float: left;
 	width: 25%;
-	border: dashed;	
+	border: none;	
 }
 #visaClient {
 	float: right;
 	width: 25%;
 	margin-top: 1em;
-	border: dashed;
+	border: none;
 }
