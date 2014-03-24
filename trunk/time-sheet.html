@@ -1,8 +1,16 @@
  <div ng-init="init()">
 
-	<div id="periode">
-		Période: {{monthLabel}} {{year}}
-	</div>
+	<table id="periode">
+	<tr>
+		<td>Période :</td>
+		<td>
+			<select class="select" ng-init="month = months[monthIndex]" ng-model="month" ng-options="m.label for m in months" ng-change="change()"></select>
+		</td>
+		<td>
+			<select class="select" ng-init="year = years[yearIndex]" ng-model="year" ng-options="y for y in years" ng-change="change()"></select>
+		</td>
+	</tr>
+	</table>
 	
  	<table id="table">
  		<tr>
@@ -15,11 +23,13 @@
  		</tr>
  	</table>
 	
-	<div>
-		<table border="0" class="resume">
-			<tr><td>Nombre d'unités d'oeuvres réceptionnées (JH)</td><td>{{getTotal()}}</td></tr>							
-			<tr><td>Nombre de jours de congés</td><td>{{getTotalOff()}}</td></tr>
-		</table>							
-	</div>
+	<table border="0" class="resume">
+		<tr><td>Nombre d'unités d'oeuvres réceptionnées (JH)</td><td>{{getTotal()}}</td></tr>							
+		<tr><td>Nombre de jours de congés</td><td>{{getTotalOff()}}</td></tr>
+	</table>							
+
+	<button ng-click="save()">Save</button>
+	
+	{{messages}}
 
  </div>

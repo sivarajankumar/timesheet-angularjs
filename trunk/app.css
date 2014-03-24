@@ -11,9 +11,11 @@ body, html {
 }
 
 .main {
-	margin-top : 1em;
-    float: right;
+    float: none;
+	margin-top : 7em;
+	maring: 0 auto;
     padding: 5px;
+    border: dashed;
 }
 
 .footer {
@@ -33,4 +35,36 @@ body, html {
     float: left;
     width: 100px;
     height: 80%;
+}
+
+#name {
+	font-size: x-large;	
+}
+#clientTitle{
+	font-size: x-large;
+}
+
+#fournisseur {
+	float: left;
+	text-align: left;
+	border: dashed;
+}
+
+#client {
+	float: right;
+	text-align: left;
+	border: dashed;
+}
+
+#visaFournisseur {
+	margin-top: 1em;
+	float: left;
+	width: 25%;
+	border: dashed;	
+}
+#visaClient {
+	float: right;
+	width: 25%;
+	margin-top: 1em;
+	border: dashed;
 }
