@@ -1,32 +1,46 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <html ng-app="project">
 <head>
-	<script src="angular.js"></script>
-	<script src="app.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.6/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.6/angular-resource.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.6/angular-route.min.js"></script>
+ 
+	<!-- fire base store -->
+	<script src="https://cdn.firebase.com/js/client/1.0.6/firebase.js"></script>
+	<script src="https://cdn.firebase.com/libs/angularfire/0.7.1/angularfire.min.js"></script>
 
+	<script src="app.js"></script>
   	<script src="time-sheet.js"></script>
 	<script src="utils.js"></script>
-
+	<script src="calendar.js"></script>
+ 
 	<link rel="stylesheet" href="app.css">
 	<link rel="stylesheet" href="time-sheet.css">
+
+	<style tyle="text/css">
+		@page {
+			size:landscape;
+		}
+	</style>
 </head>
 <body>
 	
-	<div class="header">
-		<div id="fournisseur">
-			<div id="name">Mahieddine M. ICHIR</div>
-			<div id="address">
-				02 Rue du Languedoc, 91300 Massy<br />
-				<a ref="mailto:mahieddine.ichir@free.fr">mahieddine.ichir@free.fr</a><br />
-				Tél: +33 6 24 94 19 36
-			</div>
-		</div>
-		<div id="client">
-			DOCAPOST DPS<br />
-			10 Avenue Charles de Gaulle<br />									
-			94673 Charenton-le-Pont Cedex											
+	<div id="fournisseur">
+		<div id="name">Mahieddine M. ICHIR</div>
+		<div id="address">
+			02 Rue du Languedoc, 91300 Massy<br />
+			<a ref="mailto:mahieddine.ichir@free.fr">mahieddine.ichir@free.fr</a><br />
+			Tél: +33 6 24 94 19 36
 		</div>
 	</div>
+	<div id="client">
+		<div id="clientTitle">DOCAPOST DPS</div>
+		<div id="clientAddress">
+		10 Avenue Charles de Gaulle<br />									
+		94673 Charenton-le-Pont Cedex											
+		</div>
+	</div>
+		
 	<div class="main">
 		<div ng-view></div>
 	</div>
@@ -71,34 +85,6 @@
 			</tr>
 		</table>
 	</div>
-	
-	<!-- 
-	<div id="codes">
-		<table>
-			<tr>
-				<td class="day dayfull"></td>
-				<td>Journée travaillée</td>
-			</tr>
-			<tr>
-				<td class="day dayhalf"></td>
-				<td></td>
-			</tr>
-			<tr>
-				<td class="day daynone"></td>
-				<td></td>
-			</tr>
-			<tr>
-				<td class="day daywe"></td>
-				<td></td>
-			</tr>
-		</table>
-	</div>
-	 -->
-	<!-- 
-	<div class="footer">
-		<img style="width: 16px;" src="img/cal.png" />&copy;&nbsp;<a href="http://java.michir.com">Mahieddine M. ICHIR</a>
-	</div>
-	 -->
 	
 </body>
 </html>
