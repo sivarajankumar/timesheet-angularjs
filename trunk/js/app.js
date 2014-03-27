@@ -2,8 +2,9 @@
 angular.module('project', ['ngRoute', 'firebase'])
 	.config(function($routeProvider) {
 		$routeProvider
-			.when('/', {controller:'TimeSheet', templateUrl:'time-sheet.html'})
-			.otherwise({redirectTo:'/'});
+			.when('/timesheet', {controller:'TimeSheet', templateUrl:'views/time-sheet.html'})
+			.when('/invoice', {controller:'Facture', templateUrl:'views/facture.html'})
+			.otherwise({redirectTo:'/timesheet'});
 	});
 
 //	.controller('TimeSheet', function($scope, $firebase) {
