@@ -1,0 +1,39 @@
+.factureTable {
+	text-align: left;
+	margin: 0 auto;
+	margin-top : 0em;
+	margin-left : 1em; 
+	width: 50%;
+	float: left;
+}
+
+.numbers {
+	text-align: center;
+}
+
+.totalTable {
+	font-size: x-large;
+}
+
+.oddTable {
+	background-color: EEEEEE;
+}
+.tableTitle {
+	font-size: large;
+}
+
+#factureTitle {
+	font-size: 22;
+	font-weight : bold;
+	margin-top: 2em;
+}
+
+#tvaText {
+	margin-top: 10em;
+	font-size: 14;	
+}
+
+.center {
+	margin-top: 5em;
+	text-align: center;
+}

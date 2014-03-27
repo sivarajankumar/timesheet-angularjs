@@ -1,0 +1,95 @@
+<div class="up">
+	<div id="fournisseur">
+		<div id="name">Mahieddine M. ICHIR</div>
+		<div id="address">
+			02 Rue du Languedoc, 91300 Massy<br /> <a
+				ref="mailto:mahieddine.ichir@free.fr">mahieddine.ichir@free.fr</a><br />
+			Tél: +33 6 24 94 19 36
+		</div>
+	</div>
+	<div id="client">
+		<div id="clientTitle">DOCAPOST DPS</div>
+		<div id="clientAddress">
+			10 Avenue Charles de Gaulle<br /> 94673 Charenton-le-Pont Cedex
+		</div>
+	</div>
+</div>
+
+<div ng-init="init()" class="center">
+
+	<div id="periode">
+	<table id="tablePeriode">
+	<tr>
+		<td>Période :</td>
+		<td>
+			<select class="select" ng-init="month = months[monthIndex]" ng-model="month" ng-options="m.label for m in months" ng-change="change()"></select>
+		</td>
+		<td>
+			<select class="select" ng-init="year = years[yearIndex]" ng-model="year" ng-options="y for y in years" ng-change="change()"></select>
+		</td>
+	</tr>
+	</table>
+	</div>
+	
+ 	<table class="table">
+ 		<tr>
+ 			<td />
+ 			<td ng-repeat="day in days" class="day day{{day.type}}" >{{day.day}}</td>
+ 		</tr>
+ 		<tr>
+ 			<td class="tdTitle">Développement & Architecture Java JEE</td>
+ 			<td ng-repeat="day in days" class="day day{{day.type}}" ng-click="changeType(day)">{{day.rate}}</td>
+ 		</tr>
+ 	</table>
+	
+	<table border="0" class="resume">
+		<tr><td>Nombre d'unités d'oeuvres réceptionnées (JH)</td><td>{{getTotal()}}</td></tr>							
+		<tr><td>Nombre de jours de congés</td><td>{{getTotalOff()}}</td></tr>
+	</table>							
+
+	<button id="btnSave" ng-click="save()">Save</button>
+
+</div>
+
+<div class="down">
+<div id="visaFournisseur">
+	<table>
+		<tr>
+			<td>Consultant</td>
+			<td>Mahieddine M. ICHIR</td>
+		</tr>
+		<tr>
+			<td>Date</td>
+			<td><input type="date" /></td>
+		</tr>
+		<tr>
+			<td>Observations</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>Visa consultant</td>
+			<td></td>
+		</tr>
+	</table>
+</div>
+<div id="visaClient">
+	<table>
+		<tr>
+			<td>Réception</td>
+			<td>Y. Decillia, Docapost DPS</td>
+		</tr>
+		<tr>
+			<td>Date</td>
+			<td><input type="date" /></td>
+		</tr>
+		<tr>
+			<td>Observations</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>Visa client</td>
+			<td></td>
+		</tr>
+	</table>
+</div>
+</div>

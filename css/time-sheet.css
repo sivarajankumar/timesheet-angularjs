@@ -1,14 +1,13 @@
 .table {
   margin: 0 auto;
-  border: none;
+  border: dashed 0.1ex;
   width: 90%;
   margin-top: 2em;
 }
 
-td {	
+.table td {	
 	margin: 0em;
 	padding: 0em;
-	text-align: left;
 	padding-top: 1ex;
 }
 
@@ -35,7 +34,7 @@ td {
 .tdTitle {
 	width: 50em;
 	text-align: left;
-	border: dashed 0.1ex;
+	border: none;
 	padding: 1ex;
 }
 
@@ -61,12 +60,18 @@ td {
 	height: 10%;
 }
 
-..monthSelect {
+.monthSelect {
     border: none;
     font-size: medium;
 }
 
-#periode td {
+#periode {
+	border: none;
+	clear: right;
+	width: 80%;
+}
+
+#tablePeriode td {
     font-size: 18px;
 }
 .select {
@@ -77,4 +82,35 @@ td {
 
 #btnSave {
 	float: right;
+}
+#name {
+	font-size: x-large;	
+}
+#clientTitle{
+	font-size: x-large;
+}
+
+#fournisseur {
+	float: left;
+	text-align: left;
+	border: none;
+}
+
+#client {
+	float: right;
+	text-align: left;
+	border: none;
+}
+
+#visaFournisseur {
+	margin-top: 1em;
+	float: left;
+	width: 25%;
+	border: none;	
+}
+#visaClient {
+	float: right;
+	width: 25%;
+	margin-top: 1em;
+	border: none;
 }

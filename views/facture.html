@@ -1,0 +1,75 @@
+<div class="up">
+	<div id="left">
+		<div id="name">Mahieddine M. ICHIR</div>
+		<div id="address">
+			02 Rue du Languedoc, 91300 Massy<br />
+			<a ref="mailto:mahieddine.ichir@free.fr">mahieddine.ichir@free.fr</a><br />
+			Tél: +33 6 24 94 19 36
+		</div>
+	</div>
+	<div class="right">
+		<div id="clientTitle">DOCAPOST DPS</div>
+		<div id="clientAddress">
+			10 Avenue Charles de Gaulle<br />
+			94673 Charenton-le-Pont Cedex
+		</div>
+	</div>
+</div>
+
+<div ng-init="init()">
+
+<div id="factureTitle">
+	Facture N° {{factureNumber()}}
+</div>
+	
+<div class="center">
+	<table class="factureTable">
+		<tr class="tableTitle">
+			<th>Description</th>
+			<th>Quantité (Jours)</th>
+			<th>Tarif (HT)</th>
+			<th>Sous total</th>
+		</tr>
+		<tr class="evenTable">
+			<td>Développement Java JEE</td>
+			<td class="numbers">{{getTotal()}}</td>
+			<td class="numbers">{{tarif}} €</td>
+			<td class="numbers">{{tarif * getTotal()}} €</td>
+		</tr>
+		<tr style="height: 1em;">
+			<td></td>
+		</tr>
+		<tr class="oddTable">
+			<td>Total (HT)</td>
+			<td />
+			<td class="numbers">{{tarif}} €</td>
+			<td class="numbers">{{x = tarif * getTotal()}} €</td>
+		</tr>
+		<tr class="evenTable">
+			<td>Montant TVA ({{tva}} %)</td>
+			<td />
+			<td class="numbers">{{tva * tarif / 100}} €</td>
+			<td class="numbers">{{y = x * tva / 100}} €</td>
+		</tr>
+		<tr class="totalTable oddTable">
+			<td>Total TTC</td>
+			<td />
+			<td />
+			<td class="numbers">{{x + y}} €</td>
+		</tr>
+	</table>
+</div>
+</div>
+
+<div class="down">
+	<div id="tvaText">
+		TVA acquittée sur les encaissements, N° : FR 2953353272700013<br />
+		Pénalités de retard : 3 fois le taux intérêt légal annuel<br />
+		Coordonnées bancaires : ING DIRECT, (BIC) xxx
+	</div>
+	<div class="center">
+		Mahieddine M. ICHIR, Conseil & Développement JAVA JEE <br />
+		02 Rue du Languedoc, 91300 Massy
+		N° Siren 533 532 727
+	</div>
+</div>
