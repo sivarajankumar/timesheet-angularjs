@@ -1,0 +1,35 @@
+<div class="center">
+	<table class="center" ng-hide="loginObj.user">
+		<tr>
+			<td>
+				email
+			</td>
+			<td>
+				<input type="text" ng-model="email" placeholder="user email" />
+			</td>
+		</tr>
+		<tr>
+			<td>
+				password
+			</td>
+			<td>
+				<input type="password" ng-model="password" placeholder="user password" />
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				{{user.email}}
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2" style="text-align: left;">
+				{{log}}
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2" style="text-align: right;">
+			<button ng-click="login(email, password)" ui-keypress="{13:'login(email, password)'}" >Login</button>
+			</td>
+		</tr>
+	</table>
+</div>

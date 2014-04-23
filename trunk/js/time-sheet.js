@@ -1,9 +1,11 @@
-function TimeSheet($scope, $firebase) {
+function TimeSheet($scope, $rootScope, Authentication, $location, $firebase) {
 
-	// firebase data
-	var ref = new Firebase("https://tsangularjs.firebaseio.com/ts");
+	if ($rootScope.loginObj.user == null) {
+		$location.path("/");
+	}
+
 	// get all data
-	$scope.ts = $firebase(ref);
+	$scope.ts = $firebase(Authentication.ref);
 	$scope.ts.$bind($scope, "ts");
 	
 	// get data (asynchronous)

@@ -60,3 +60,7 @@
 	border: none;
 	overflow: hidden;
 }
+
+#userManagement {
+	float: right;
+}
