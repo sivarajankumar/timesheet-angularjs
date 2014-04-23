@@ -30,11 +30,14 @@ function Facture($scope, $firebase) {
 	$scope.init = function() {
 		
 		var d = new Date();
-		var monthIndex = d.getMonth();
+		var monthIndex = 2;//d.getMonth();
 		var yearIndex = $scope.years.indexOf(d.getFullYear());
 
 		$scope.month = $scope.months[monthIndex];
 		$scope.year = $scope.years[yearIndex];
+		
+		$scope.emissionDate = d.getDay() + ' ' + $scope.months[d.getMonth()].label + ' ' + d.getFullYear();
+		$scope.nCommande = 'S23DAC1401-0001';
 	};
 	
 	/**

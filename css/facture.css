@@ -2,9 +2,13 @@
 	text-align: left;
 	margin: 0 auto;
 	margin-top : 0em;
-	margin-left : 1em; 
-	width: 50%;
+	margin-left : 0em; 
+	width: 100%;
 	float: left;
+}
+
+.factureTable td {
+	height: 1.5em;
 }
 
 .numbers {
@@ -20,6 +24,7 @@
 }
 .tableTitle {
 	font-size: large;
+	height: 4em;
 }
 
 #factureTitle {
@@ -29,11 +34,27 @@
 }
 
 #tvaText {
-	margin-top: 10em;
-	font-size: 14;	
+	margin-top: 15em;
+	font-size: small;	
 }
 
 .center {
-	margin-top: 5em;
+	margin-top: 2em;
 	text-align: center;
+}
+#address {
+	margin-top: 1em;
+}
+
+#emissionDate {
+	font-size: large;
+}
+
+#nCommande {
+	margin-top: 1em;
+	font-size: large;
+}
+
+.signature {
+	font-size: small;
 }
