@@ -1,18 +1,72 @@
 'use strict';
 
-var myProject = angular.module('project', ['ngRoute', 'firebase', 'ui.bootstrap'])
+angular.module('services', ['firebase'])
+	.factory('BackendService', function($firebase) {
+		var url = "https://tsangularjs.firebaseio.com/ts";
+		var ref = new Firebase(url);
+		var loginObj = $firebaseSimpleLogin(ref);
+		return {
+			url: url,
+			ref : ref,
+			loginObj : loginObj
+		};
+	})
+	.service('Session', function() {
+		this.create = function(user) {
+			this.user = user;
+		};
+		this.destroy = function() {
+			this.user = null;
+		};
+		return this;
+	})
+	.factory('AuthenticationService', function(BackendService, Session) {
+		return {
+			login: function(credentials) {
+				BackendService.loginObj.$login('password', {
+					email: credentials.email,
+					password: credentials.password
+				}).then(function(user) {
+					Session.create(user);
+				}, function(error) {
+					// ERROR
+				});
+			},
+			logout: function() {
+				BackendService.loginObj.$logout()
+					.then(function() {
+						Session.destroy();
+					});
+			},
+			isAuthenticated: function() {
+				return !!Session.user;
+			}
+		};
+	})
+	.constant('AUTH_EVENTS', {
+		loginSuccess: 'auth-login-success',
+		loginFailed: 'auth-login-failed',
+  		logoutSuccess: 'auth-logout-success',
+  		sessionTimeout: 'auth-session-timeout',
+  		notAuthenticated: 'auth-not-authenticated',
+  		notAuthorized: 'auth-not-authorized'
+	});
+
+
+var myProject = angular.module('project', ['ngRoute', 'services', 'ui.bootstrap'])
 	.config(function($routeProvider) {
 		$routeProvider
 			.when('/time-sheet', {controller:'TimeSheet', templateUrl:'views/time-sheet.html'})
 			.when('/invoice', {controller:'Facture', templateUrl:'views/facture.html'})
-			.when('/login', {controller: 'Login', templateUrl: 'views/login.html'})
-			.otherwise({redirectTo:'/login'});
+			.when('/', {controller: 'Login', templateUrl: 'views/login.html'})
+			.otherwise({redirectTo:'/'});
 	});
 
-myProject.factory('Authentication', function($rootScope, $firebase, $location) {
 
-	var ref = new Firebase("https://tsangularjs.firebaseio.com/ts");
-	$rootScope.loginObj = [];// TODO watch
+//myProject.factory('Authentication', function($rootScope, $firebase, $location) {
+
+//	var ref = new Firebase("https://tsangularjs.firebaseio.com/ts");
+//	$rootScope.loginObj = [];// TODO watch
 	
 //	$rootScope.$on("$firebaseSimpleLogin:logout", function(e, user) {
 //		Authentication.user = null;
@@ -24,12 +78,12 @@ myProject.factory('Authentication', function($rootScope, $firebase, $location) {
 //		$location.path("/time-sheet");
 //	});
 	
-	return {
-		"ref": ref,
-		"loginObj" : $rootScope.loginObj,
-		"user": null
-	};
-});
+//	return {
+//		"ref": ref,
+//		"loginObj" : $rootScope.loginObj,
+//		"user": null
+//	};
+//});
 
 myProject.filter('euro', function() {
 		return function(data) {
@@ -42,6 +96,12 @@ myProject.filter('euro', function() {
 			
 		}
 	});
+
+myProject.controller('ApplicationController', function($scope, AuthenticationService) {
+
+	$scope.user = null;
+
+});
 
 //	.controller('TimeSheet', function($scope, $firebase) {
 //		var ts = new Firebase("https://tsangularjs.firebaseio.com/time-sheets");
