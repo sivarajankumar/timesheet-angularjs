@@ -1,16 +1,18 @@
-function Login($scope, $rootScope, $firebase, $firebaseSimpleLogin, Authentication, $location) {
+function Login($scope, AuthenticationService) {
 
-    $scope.loginObj = $firebaseSimpleLogin(Authentication.ref);
-    $rootScope.loginObj = $scope.loginObj; 
-
+    //$scope.loginObj = $firebaseSimpleLogin(Authentication.ref);
+    //$rootScope.loginObj = $scope.loginObj; 
+/*
 	if ($scope.loginObj.user != null) {
 		$location.path("/time-sheet");
 	}
-	
+*/	
     // login callback
-	$scope.login = function(email, password) {
-		
-		// firebase login
+	$scope.login = function(credentials) {	
+		AuthenticationService.login(credentials);
+	};
+
+/**
 		$scope.loginObj.$login('password', {
 			email: "mahieddine.ichir@gmail.com",
 			password: "raf1978ika"
@@ -20,4 +22,6 @@ function Login($scope, $rootScope, $firebase, $firebaseSimpleLogin, Authenticati
 			$scope.log = "Authentication failed!";
 		});
 	};
+
+	*/
 };

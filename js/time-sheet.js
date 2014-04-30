@@ -1,4 +1,4 @@
-function TimeSheet($scope, $rootScope, Authentication, $location, $firebase) {
+function TimeSheet($scope, $rootScope, AuthenticationService, $location, BackendService) {
 
 	if ($rootScope.loginObj.user == null) {
 		$location.path("/");
